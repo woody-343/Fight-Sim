@@ -1,0 +1,113 @@
+// Game Fight.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include <string>
+int main()
+{
+
+    // random number generation
+    srand((unsigned)time(NULL));
+    int random = rand();
+    int enemyrand = rand();
+    // setting knowns
+    int enemyhp = 20;
+    int herohp = 25;
+    int enemymod = 2;
+    int heromod = 3;
+    int enemyin = random % 20 + 1 + enemymod;
+    int heroin = enemyrand % 20 + 1 + heromod;
+    double playerans = {};
+    // setting variables
+    int enemydmg = {};
+    int herodmg = {};
+     
+
+
+    // title screen
+    std::cout << "Welcome to Arena\n";
+    std::cout << "=================\n";
+    std::cout << "Type start to start\n";
+    std::cin >> playerans;
+
+    
+     
+
+    // game start
+    std::cout << "You are in an arena, opposite you is stood a gladiator, you hear the crowd roaring.\nYou raise your sword and run at your enemy\n";
+    system("pause");
+    std::cout << "You roll " << heroin << " for initiative\n";
+    std::cout << "Your enemy rolls " << enemyin << " for initative\n";
+    system("pause");
+    // if the hero goes first
+    if (heroin > enemyin)
+    {
+        //hero turn
+        std::cout << "You are going first\n";
+        while (enemyhp > 0 and herohp > 0)
+        {
+            srand((unsigned)time(NULL));
+            int random = rand();
+            
+            std::cout << "It is your turn, you swing with your sword\n";
+            int herodmg = (random % 10 + 1) + heromod;
+            std::cout << "You deal " << herodmg << " damage\n";
+            int enemy = enemyhp - herodmg;
+            enemyhp = enemy;
+            std::cout << "The enemy is at " << enemy << " health\n";
+            system("pause");
+            // enemy turn
+            std::cout << "The enemy swings at you with their warhammer\n";
+            int enemydmg = (random % 12 + 1) + enemymod;
+            std::cout << "You are dealt " << enemydmg << " damage\n";
+            int hero = herohp - enemydmg;
+            herohp = hero;
+            std::cout << "You are at " << herohp << " health\n";
+            system("pause");
+
+            if (herohp < 0)
+                std::cout << "You have fallen in battle.\n YOU LOSE\n =========== ";
+            if (enemyhp < 0)
+                std::cout << "You have won this battle.\n YOU WIN\n ===========";
+        }
+
+    }
+    // if the enemy goes first
+    if (enemyin > heroin)
+    {
+
+        std::cout << "The enemy is going first, they swing at you with their warhammer\n";
+        while (enemyhp > 0 and herohp > 0)
+        {
+            srand((unsigned)time(NULL));
+            int random = rand();
+
+            int enemydmg = (random % 12 + 1) + enemymod;
+            std::cout << "You are dealt " << enemydmg << " damage\n";
+            int hero = herohp - enemydmg;
+            herohp = hero;
+            std::cout << "You are at " << herohp << " health\n";
+            system("pause");
+            std::cout << "It is your turn, you swing with your sword\n";
+            int herodmg = (random % 10 + 1) + heromod;
+            std::cout << "You deal " << herodmg << " damage\n";
+            int enemy = enemyhp - herodmg;
+            enemyhp = enemy;
+            std::cout << "The enemy is at " << enemyhp << " health\n";
+            system("pause");
+
+            if (herohp < 0)
+                std::cout << "You have fallen in battle.\n YOU LOSE\n =========== ";
+            if (enemyhp < 0)
+                std::cout << "You have won this battle.\n YOU WIN\n ===========";
+        }
+    }
+
+    
+
+
+
+
+
+}
+
